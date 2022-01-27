@@ -7,6 +7,7 @@ from .forms import PostForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mail
 from datetime import datetime
+from django.core.cache import cache
 
 from .models import *
  
@@ -27,6 +28,18 @@ class NewsDetailView(DetailView):
     model = Post  
     template_name = 'news_detail.html' 
     context_object_name = 'news'
+
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'news-{self.kwargs["pk"]}', None)
+ 
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=kwargs['queryset']) 
+            cache.set(f'news-{self.kwargs["pk"]}', obj)
+        
+        return obj
+
+
 
 class NewsUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'news_edit.html'

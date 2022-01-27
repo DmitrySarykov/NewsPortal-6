@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.utils import timezone
+from django.core.cache import cache
 
 class Category (models.Model):
     name = models.CharField(max_length = 255, unique = True)
@@ -39,6 +40,12 @@ class Post (models.Model):
 
     def get_absolute_url(self):
         return f'/news/{self.pk}' 
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(f'news-{self.pk}')
+
+
 
 class PostCategory (models.Model):
     post = models.ForeignKey(Post, on_delete = models.CASCADE)

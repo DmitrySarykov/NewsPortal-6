@@ -6,7 +6,7 @@
     <title>{{post.title}}</title>
 </head>
 <body>
-    <h2>Здравствуй, {{user.username}}! Новая статья в твоём любимом разделе!</h2>
+    <h2>Здравствуй, {{user.username}}! Новая статья в твоём любимом разделе!</h2>
     <h3><a href="http://{{site.domain}}:8000{% url 'news_detail' post.pk %}">{{post.title}}</a></h3>
     <div>{{post.text|truncatechars:50}}</div>
 </body>
