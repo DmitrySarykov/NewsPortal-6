@@ -3,7 +3,8 @@ from .views import *
 from django.views.decorators.cache import cache_page
 
 urlpatterns = [
-    path('', cache_page(60*1)(NewsList.as_view()) , name="news_list"),
+    #path('', cache_page(60*1)(NewsList.as_view()) , name="news_list"),
+    path('', NewsList.as_view() , name="news_list"),
     path('<int:pk>', NewsDetailView.as_view(), name="news_detail"),
     path('category/<int:pk>/', cache_page(60*5)(CategoryView.as_view()), name="category_detail"),
     path('category/<int:pk>/subscribe/', SubscribeView.as_view(), name="category_subscribe"),

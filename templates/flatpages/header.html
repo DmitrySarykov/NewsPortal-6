@@ -1,3 +1,4 @@
+{% load i18n %}
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container px-4 px-lg-5">
@@ -11,6 +12,23 @@
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'news_list' %}">Статьи</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'search' %}">Поиск по статьям</a></li>
                 <li class="nav-item">{% block menu %}<a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Регистрация/Войти{% endblock %}</a></li>
+                <li class="nav-item">    
+                    <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+                        <input type="hidden" name="next" value="{{ redirect_to }}">
+                        
+                        <select name="language" id="">
+                            {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+                            {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+                
+                            {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                                    {{ language.name_local }} - {{ language.code }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="set">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -21,8 +39,8 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>NewsPortal</h1>
-                    <span class="subheading"><a class="text-white" href="{% url 'news_add' %}">Создайте свою первую статью!</a></span>
+                    <h1>{% trans "NewsPortal" %}</h1>
+                    <span class="subheading"><a class="text-white" href="{% url 'news_add' %}">{% trans "Create you post!" %}</a></span>
                 </div>
             </div>
         </div>
