@@ -10,7 +10,12 @@ from datetime import datetime
 from django.core.cache import cache
 
 from .models import *
- 
+from django.utils import timezone
+from django.utils.translation import activate, get_supported_language_variant, LANGUAGE_SESSION_KEY
+from django.utils.translation import gettext as _ #  импортируем функцию для перевода
+import pytz #  импортируем стандартный модуль для работы с часовыми поясами
+
+
 class NewsList(ListView):
     model = Post  
     template_name = 'news_list.html' 
@@ -18,6 +23,8 @@ class NewsList(ListView):
     ordering = ['-date']
     paginate_by = 10
     queryset = Post.objects.order_by('-date') 
+
+    
 
 class NewsCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'news_edit.html'
@@ -29,15 +36,15 @@ class NewsDetailView(DetailView):
     template_name = 'news_detail.html' 
     context_object_name = 'news'
 
-    def get_object(self, *args, **kwargs):
-        obj = cache.get(f'news-{self.kwargs["pk"]}', None)
+    # def get_object(self, *args, **kwargs):
+    #     obj = cache.get(f'news-{self.kwargs["pk"]}', None)
  
-        # если объекта нет в кэше, то получаем его и записываем в кэш
-        if not obj:
-            obj = super().get_object(queryset=kwargs['queryset']) 
-            cache.set(f'news-{self.kwargs["pk"]}', obj)
+    #     # # если объекта нет в кэше, то получаем его и записываем в кэш
+    #     # if not obj:
+    #     #     obj = super().get_object(queryset=kwargs['queryset']) 
+    #     #     cache.set(f'news-{self.kwargs["pk"]}', obj)
         
-        return obj
+    #     return obj
 
 
 

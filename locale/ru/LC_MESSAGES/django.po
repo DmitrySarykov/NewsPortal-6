@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 20:09+0300\n"
+"POT-Creation-Date: 2022-02-07 19:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,37 @@ msgstr ""
 "10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
 "100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: .\templates\category_detail.html:9
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: .\templates\category_detail.html:10
+msgid "Subscribers"
+msgstr "Подписчики"
+
+#: .\templates\category_detail.html:20 .\templates\news_list.html:28
+#: .\templates\search.html:32
+msgid "Edit"
+msgstr "Редактировать"
+
+#: .\templates\category_detail.html:21 .\templates\news_delete.html:18
+#: .\templates\news_list.html:29 .\templates\search.html:33
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\templates\flatpages\header.html:12 .\templates\news_delete.html:5
+#: .\templates\news_list.html:5 .\templates\search.html:5
+msgid "Articles"
+msgstr "Статьи"
+
+#: .\templates\flatpages\header.html:13 .\templates\search.html:9
+msgid "Search by articles"
+msgstr "Поиск по статьям"
+
+#: .\templates\flatpages\header.html:14
+msgid "Registration/log in"
+msgstr "Регистрация/Войти"
+
 #: .\templates\flatpages\header.html:42
 msgid "NewsPortal"
 msgstr "Новостной портал"
@@ -26,3 +57,112 @@ msgstr "Новостной портал"
 #: .\templates\flatpages\header.html:43
 msgid "Create you post!"
 msgstr "Создайте свою статью!"
+
+#: .\templates\news_delete.html:9
+msgid "Do you really want to delete the article?"
+msgstr "Вы действительно хотите удалить эту статью?"
+
+#: .\templates\news_detail.html:13
+msgid "Categories:"
+msgstr "Категории:"
+
+#: .\templates\news_edit.html:9 .\templates\news_list.html:10
+#: .\templates\search.html:10
+msgid "Create an article"
+msgstr "Создать статью"
+
+#: .\templates\news_edit.html:13
+msgid "Date"
+msgstr "Дата"
+
+#: .\templates\news_edit.html:14
+msgid "Author"
+msgstr "Автор"
+
+#: .\templates\news_edit.html:15
+msgid "Type"
+msgstr "Тип"
+
+#: .\templates\news_edit.html:16 .\templates\news_list.html:22
+msgid "Category"
+msgstr "Категория"
+
+#: .\templates\news_edit.html:17
+msgid "Title"
+msgstr "Название"
+
+#: .\templates\news_edit.html:18
+msgid "Text"
+msgstr "Текст"
+
+#: .\templates\news_edit.html:19
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: .\templates\news_edit.html:22
+msgid "Add an article"
+msgstr "Добавить статью"
+
+#: .\templates\news_edit.html:24
+msgid "Save the article"
+msgstr "Сохранить статью"
+
+#: .\templates\news_list.html:9
+msgid "All articles"
+msgstr "Все статьи"
+
+#: .\templates\news_list.html:11
+msgid "Filter articles"
+msgstr "Фильтр по статьям"
+
+#: .\templates\news_list.html:36
+msgid "There are no articles"
+msgstr "Нет статей"
+
+#: .\templates\news_list.html:42 .\templates\search.html:43
+msgid "First"
+msgstr "Первая"
+
+#: .\templates\news_list.html:56 .\templates\search.html:57
+msgid "Last"
+msgstr "Последняя"
+
+#: .\templates\news_week.html:7
+msgid "News for the week"
+msgstr "Новости за неделю"
+
+#: .\templates\news_week.html:10
+msgid "Hello! New articles in your favorite section for the week"
+msgstr "Привет! Новые статьи в твоем любимом разделе за неделю"
+
+#: .\templates\post.html:10
+msgid "Hello, {{user.username}}! A new article in your favorite section!"
+msgstr "Привет, {{user.username}}! Новая статья в твоем любимом разделе!"
+
+#: .\templates\protect\index.html:4
+msgid "Go out"
+msgstr "Выйти"
+
+#: .\templates\protect\index.html:8
+msgid "Authorized User Page "
+msgstr "Страница вторизованного пользователя"
+
+#: .\templates\protect\index.html:10
+msgid "Become an author!"
+msgstr "Стать автором!"
+
+#: .\templates\protect\index.html:11
+msgid "Authors can add their articles/news, as well as edit them"
+msgstr "Авторы могут добавлять свои статьи / новости, а также редактировать их"
+
+#: .\templates\protect\index.html:13
+msgid "Go to all articles"
+msgstr "Перейти ко всем статьям"
+
+#: .\templates\search.html:14
+msgid "Search"
+msgstr "Поиск"
+
+#: .\templates\search.html:26
+msgid "Categories"
+msgstr "Категории"

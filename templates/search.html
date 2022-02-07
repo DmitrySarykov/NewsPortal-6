@@ -1,16 +1,17 @@
 {% extends 'flatpages/default.html' %}
+{% load i18n %}
 {% load custom_filters %}
 {% block title %}
-Статьи
+    {% trans "Articles" %}
 {% endblock title %}
  
 {% block content %}
-    <h1>Поиск статей</h1> 
-    <a class="btn btn-primary text-uppercase" href="{% url 'news_add' %}">Создать статью</a>
+    <h1>{% trans "Search by articles" %}</h1> 
+    <a class="btn btn-primary text-uppercase" href="{% url 'news_add' %}">{% trans "Create an article" %}</a>
 
     <form method="GET">
         {{ filter.form }}
-        <input class="btn btn-dark text-uppercase" type="submit" value="Найти">
+        <input class="btn btn-dark text-uppercase" type="submit" value="{% trans "Search" %}">
     </form>
 
     <hr>
@@ -22,14 +23,14 @@
                 <h4 class="post-subtitle">{{ news.text|truncatechars:50|censor }}</h4>
             </a>
             <p class="post-meta">
-                Категории: 
+                {% trans "Categories" %}: 
                 {% for category in news.category.all %}
                 <a href="{% url 'category_detail' category.pk %}">{{category.name}}</a>
                 {% endfor%}
             </p>
             <p class="post-meta"><i>{{ news.date|date:'d M Y' }}</i> 
-                <a href="{% url 'news_edit' news.pk %}">Редактировать</a>
-                <a href="{% url 'news_delete' news.pk %}">Удалить</a>
+                <a href="{% url 'news_edit' news.pk %}">{% trans "Edit" %}</a>
+                <a href="{% url 'news_delete' news.pk %}">{% trans "Delete" %}</a>
             </p>
         </div>
         <!-- Divider-->
@@ -39,7 +40,7 @@
     {% if is_paginated %}
     
         {% if page_obj.has_previous %}
-            <a href="?page=1">Первая</a>
+            <a href="?page=1">{% trans "First" %}</a>
             <a href="?page={{ page_obj.previous_page_number }}"><<<</a>
         {% endif %}
     
@@ -53,7 +54,7 @@
     
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">>>></a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last" %}</a>
         {% endif %}
  
     {% endif %}

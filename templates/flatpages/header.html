@@ -9,9 +9,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'news_list' %}">Статьи</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'search' %}">Поиск по статьям</a></li>
-                <li class="nav-item">{% block menu %}<a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Регистрация/Войти{% endblock %}</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'news_list' %}">{% trans "Articles" %}</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'search' %}">{% trans "Search by articles" %}</a></li>
+                <li class="nav-item">{% block menu %}<a class="nav-link px-lg-3 py-3 py-lg-4" href="/">{% trans "Registration/log in" %}{% endblock %}</a></li>
                 <li class="nav-item">    
                     <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
                         <input type="hidden" name="next" value="{{ redirect_to }}">
