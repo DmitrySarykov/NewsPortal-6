@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
 {% load i18n %}
+{% load tz %}
 {% load custom_filters %}
 {% block title %}
     {% trans "Articles" %}
@@ -12,7 +13,6 @@
     <hr>
     {% if news_list %}
         {% for news in news_list %}
-        
         <!-- Post preview-->
         <div class="post-preview">
             <a href="post.html">
@@ -32,7 +32,6 @@
         </div>
         <!-- Divider-->
         <hr class="my-4" />
-        
         {% endfor %}
     {% else %}
         <h2>{% trans "There are no articles" %}!</h2>

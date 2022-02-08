@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load tz %}
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container px-4 px-lg-5">
@@ -41,6 +42,29 @@
                 <div class="site-heading">
                     <h1>{% trans "NewsPortal" %}</h1>
                     <span class="subheading"><a class="text-white" href="{% url 'news_add' %}">{% trans "Create you post!" %}</a></span>
+                    {% get_current_timezone as TIME_ZONE %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <label for="timezone">Time zone:</label>
+                        <select name="timezone">
+                            {% for tz in timezones %}
+                            <option value="{{tz}}" {% if tz == TIME_ZONE %} selected{% endif %}>{{tz}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Set">
+                    </form>
+
+                    {{ TIME_ZONE }}
+                    {{ current_time|timezone:TIME_ZONE }}
+                    <style>
+                        body {
+                            background-color: {%  if current_time|date:"H" >= '19' and current_time|date:"H" <= '7' %} #17162B {% else %} white {% endif %};
+                            color: {%  if current_time|date:"H" >= '19' and current_time|date:"H" <= '7' %} white {% endif %}; 
+                        }
+                        a {
+                            color: {%  if current_time|date:"H" >= '19' and current_time|date:"H" <= '7' %} white {% endif %}; 
+                        }
+                    </style>
                 </div>
             </div>
         </div>
