@@ -16,6 +16,11 @@ from django.utils.translation import activate, get_supported_language_variant, L
 from django.utils.translation import gettext as _ #  импортируем функцию для перевода
 import pytz #  импортируем стандартный модуль для работы с часовыми поясами
 
+from rest_framework import viewsets
+from rest_framework import permissions
+
+from .serializers import *
+
 
 class NewsList(ListView):
     model = Post  
@@ -141,4 +146,12 @@ class SubscribeView(View):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     
 
-        
+class NewsViewset(viewsets.ModelViewSet):
+   queryset = Post.objects.all().filter(type = "Н")
+   serializer_class = PostSerializer
+   permission_classes = [permissions.IsAuthenticated]
+
+class ArticlesViewset(viewsets.ModelViewSet):
+   queryset = Post.objects.all().filter(type = "С")
+   serializer_class = PostSerializer
+   permission_classes = [permissions.IsAuthenticated] 

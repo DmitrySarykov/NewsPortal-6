@@ -17,6 +17,13 @@ from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, include
 
+from rest_framework import routers
+from news import views
+
+router = routers.DefaultRouter()
+router.register(r'news', views.NewsViewset)
+router.register(r'articles', views.ArticlesViewset)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('news/', include('news.urls')),
@@ -25,4 +32,6 @@ urlpatterns = [
     path('sign/', include('sign.urls')),
     path('accounts/', include('allauth.urls')),
     path('i18n/', include('django.conf.urls.i18n')), 
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
